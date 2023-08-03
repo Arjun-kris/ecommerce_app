@@ -6,7 +6,7 @@ import 'package:ecommerce_app1/screens/homescreen.dart';
 import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ecommerce_app1/controller/signup_provider.dart';
+import 'package:ecommerce_app1/controllers/signup_provider.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 
 class SignupPage extends StatelessWidget {
@@ -229,7 +229,7 @@ class SignupPage extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
               },
