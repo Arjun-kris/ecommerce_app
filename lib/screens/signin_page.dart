@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
-import 'package:ecommerce_app1/controller/signup_page.dart';
+import 'package:ecommerce_app1/screens/signup_page.dart';
 import 'package:ecommerce_app1/utils/forgot_password.dart';
 import 'package:ecommerce_app1/constants/text_field_styles.dart';
+import 'package:ecommerce_app1/constants/decoration.dart';
+import 'package:ecommerce_app1/constants/padding.dart';
 import 'package:ecommerce_app1/constants/icon.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 
@@ -118,7 +120,7 @@ class SigninPage extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => HomeScreen(),
                       ),
                     );
                   },

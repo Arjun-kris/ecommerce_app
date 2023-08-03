@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app1/controller/signup_page.dart';
+import 'package:ecommerce_app1/screens/signup_page.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 

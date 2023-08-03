@@ -4,15 +4,10 @@ import '../models/product.dart';
 import '../widgets/image_slider.dart';
 import '../widgets/product_item.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final List<Product> products = [
+  final List<Product> products = [   ////controller
     Product(
       title: 'Product 1',
       description: 'Description of Product 1',
@@ -82,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSearchBar(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: TextField(
+      child: TextField(                   ///comment
         decoration: InputDecoration(
           hintText: 'Search products...',
           prefixIcon: const Icon(Icons.search),

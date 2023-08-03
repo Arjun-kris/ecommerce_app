@@ -1,10 +1,12 @@
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/constants/text_field_styles.dart';
+import 'package:ecommerce_app1/constants/decoration.dart';
+import 'package:ecommerce_app1/constants/padding.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
-import 'package:ecommerce_app1/controller/signin_page.dart';
+import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ecommerce_app1/utils/signup_provider.dart';
+import 'package:ecommerce_app1/controller/signup_provider.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 
 class SignupPage extends StatelessWidget {

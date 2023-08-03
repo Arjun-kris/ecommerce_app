@@ -2,15 +2,4 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 
-
-final textFieldDecoration = BoxDecoration(
-  border: Border.all(
-    color: AppColors.secondaryColor,
-    width: 0.6,
-  ),
-  borderRadius: BorderRadius.circular(8.0),
-);
-
 const textFieldTextStyle = TextStyle(color: AppColors.secondaryColor, fontSize: 18);
-
-const textFieldContentPadding = EdgeInsets.all(6.0);

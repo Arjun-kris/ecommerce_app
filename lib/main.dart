@@ -1,9 +1,9 @@
-import 'package:ecommerce_app1/controller/splash.dart';
+import 'package:ecommerce_app1/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants/colors.dart';
-import 'utils/signup_provider.dart';
+import 'controller/signup_provider.dart';
 
 void main() {
   runApp(

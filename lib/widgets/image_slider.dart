@@ -10,7 +10,7 @@ class ImageSlider extends StatefulWidget {
   _ImageSliderState createState() => _ImageSliderState();
 }
 
-class _ImageSliderState extends State<ImageSlider> {
+class _ImageSliderState extends State<ImageSlider> {  //controller
   int activeIndex = 0;
   final controller = CarouselController();
   final localImages = [
@@ -38,7 +38,7 @@ class _ImageSliderState extends State<ImageSlider> {
             autoPlayAnimationDuration: const Duration(seconds: 2),
             enlargeCenterPage: true,
             onPageChanged: (index, reason) =>
-                setState(() => activeIndex = index),
+                setState(() => activeIndex = index),  ////change
           ),
         ),
         const SizedBox(height: 12),
