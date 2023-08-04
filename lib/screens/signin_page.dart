@@ -3,11 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
 import 'package:ecommerce_app1/screens/signup_page.dart';
-import 'package:ecommerce_app1/utils/forgot_password.dart';
-import 'package:ecommerce_app1/constants/text_field_styles.dart';
+import 'package:ecommerce_app1/controllers/signdata_provider.dart';
+import 'package:ecommerce_app1/screens/forgot_password.dart';
 import 'package:ecommerce_app1/constants/decoration.dart';
-import 'package:ecommerce_app1/constants/padding.dart';
-import 'package:ecommerce_app1/constants/icon.dart';
+import 'package:ecommerce_app1/constants/icons.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 
 class SigninPageProvider extends ChangeNotifier {
@@ -22,9 +21,7 @@ class SigninPageProvider extends ChangeNotifier {
 }
 
 class SigninPage extends StatelessWidget {
-  SigninPage({super.key});
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  const SigninPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,6 @@ class SigninPage extends StatelessWidget {
                     height: 100,
                   ),
                 ),
-                const SizedBox(height: 50),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -57,18 +53,15 @@ class SigninPage extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 90),
                 Container(
                   decoration: textFieldDecoration,
                   child: TextField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: textFieldTextStyle,
-                      border: InputBorder.none,
-                      contentPadding: textFieldContentPadding,
-                      prefixIcon:
-                          Icon(AppIcons.email, color: AppColors.primaryColor),
+                    controller: TextEditingControllers.emailController,
+                    decoration: customInput(
+                      hintText: 'Email',
+                      prefixIcon: const Icon(AppIcons.email,
+                          color: AppColors.primaryColor),
                     ),
                   ),
                 ),
@@ -76,16 +69,13 @@ class SigninPage extends StatelessWidget {
                 Container(
                   decoration: textFieldDecoration,
                   child: TextField(
-                    controller: passwordController,
+                    controller: TextEditingControllers.passwordController,
                     obscureText:
                         context.watch<SigninPageProvider>().isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: textFieldTextStyle,
-                      border: InputBorder.none,
-                      contentPadding: textFieldContentPadding,
-                      prefixIcon:
-                          const Icon(Icons.lock, color: AppColors.primaryColor),
+                    decoration: passswordInput(
+                      hintText: 'Password',
+                      prefixIcon: const Icon(AppIcons.lock,
+                          color: AppColors.primaryColor),
                       suffixIcon: IconButton(
                         icon: Icon(
                           context.watch<SigninPageProvider>().isPasswordVisible
@@ -120,7 +110,7 @@ class SigninPage extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => const HomeScreen(),
                       ),
                     );
                   },
@@ -131,19 +121,35 @@ class SigninPage extends StatelessWidget {
                   child: const Text('LOG IN', style: TextStyle(fontSize: 21)),
                 ),
                 const SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                      Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignupPage(),
+                        builder: (context) => const SignupPage(),
+                        ),
+                      );
+                    },
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    );
-                  },
-                  child: const Text(
-                    'Don\'t have an account? Sign Up',
-                    style: TextStyle(color: AppColors.primaryColor),
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

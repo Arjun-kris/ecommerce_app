@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'Padding.dart';
+import 'text_field_styles.dart';
 
 final textFieldDecoration = BoxDecoration(
   border: Border.all(
@@ -8,3 +10,25 @@ final textFieldDecoration = BoxDecoration(
   ),
   borderRadius: BorderRadius.circular(8.0),
 );
+
+
+InputDecoration customInput({required String hintText, required Icon prefixIcon}) {
+  return InputDecoration(
+    hintText: hintText,
+    hintStyle: hint,
+    border: InputBorder.none,
+    contentPadding: textFieldContentPadding,
+    prefixIcon: prefixIcon,
+  );
+}
+
+InputDecoration passswordInput({required String hintText, required Icon prefixIcon, required suffixIcon}) {
+  return InputDecoration(
+    hintText: hintText,
+    hintStyle: hint,
+    border: InputBorder.none,
+    contentPadding: textFieldContentPadding,
+    prefixIcon: prefixIcon,
+    suffixIcon: suffixIcon,
+  );
+}

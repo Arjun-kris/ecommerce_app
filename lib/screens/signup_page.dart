@@ -1,11 +1,10 @@
 import 'package:ecommerce_app1/constants/colors.dart';
-import 'package:ecommerce_app1/constants/text_field_styles.dart';
 import 'package:ecommerce_app1/constants/decoration.dart';
-import 'package:ecommerce_app1/constants/padding.dart';
 import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ecommerce_app1/controllers/signup_provider.dart';
+import 'package:ecommerce_app1/constants/icons.dart';
+import 'package:ecommerce_app1/controllers/signdata_provider.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 import '../utils/dialog_utils.dart';
 
@@ -13,7 +12,7 @@ import '../utils/dialog_utils.dart';
 class SignupPage extends StatelessWidget {
 
 
-  SignupPage({super.key});
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,28 +50,9 @@ class SignupPage extends StatelessWidget {
                     decoration: textFieldDecoration,
                     child: TextField(
                       controller: TextEditingControllers.nameController,
-                      decoration: const InputDecoration(
-                        labelText: 'Name',
-                        labelStyle: textFieldTextStyle,
-                        border: InputBorder.none,
-                        contentPadding: textFieldContentPadding,
-                        prefixIcon:
-                            Icon(Icons.person, color: AppColors.primaryColor),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    decoration: textFieldDecoration,
-                    child: TextField(
-                      controller: TextEditingControllers.emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Phone',
-                        labelStyle: textFieldTextStyle,
-                        border: InputBorder.none,
-                        contentPadding: textFieldContentPadding,
-                        prefixIcon:
-                            Icon(Icons.phone, color: AppColors.primaryColor),
+                      decoration: customInput(
+                      hintText: 'Name',
+                      prefixIcon: const Icon(AppIcons.name, color: AppColors.primaryColor),
                       ),
                     ),
                   ),
@@ -81,13 +61,20 @@ class SignupPage extends StatelessWidget {
                     decoration: textFieldDecoration,
                     child: TextField(
                       controller: TextEditingControllers.phoneController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: textFieldTextStyle,
-                        border: InputBorder.none,
-                        contentPadding: textFieldContentPadding,
-                        prefixIcon:
-                            Icon(Icons.email, color: AppColors.primaryColor),
+                      decoration: customInput(
+                      hintText: 'Phone',
+                      prefixIcon: const Icon(AppIcons.phone, color: AppColors.primaryColor),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    decoration: textFieldDecoration,
+                    child: TextField(
+                      controller: TextEditingControllers.emailController,
+                      decoration: customInput(
+                      hintText: 'Email',
+                      prefixIcon: const Icon(AppIcons.email, color: AppColors.primaryColor),
                       ),
                     ),
                   ),
@@ -98,12 +85,9 @@ class SignupPage extends StatelessWidget {
                       controller: TextEditingControllers.passwordController,
                       obscureText:
                           context.watch<SignupPageProvider>().isPasswordVisible,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: textFieldTextStyle,
-                        border: InputBorder.none,
-                        contentPadding: textFieldContentPadding,
-                        prefixIcon: const Icon(Icons.lock,
+                      decoration: passswordInput(
+                        hintText: 'Password',
+                        prefixIcon: const Icon(AppIcons.lock,
                             color: AppColors.primaryColor),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -131,13 +115,9 @@ class SignupPage extends StatelessWidget {
                       obscureText: context
                           .watch<SignupPageProvider>()
                           .isConfirmPasswordVisible,
-                      decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                        labelStyle: textFieldTextStyle,
-                        border: InputBorder.none,
-                        contentPadding: textFieldContentPadding,
-                        prefixIcon: const Icon(Icons.lock,
-                            color: AppColors.primaryColor),
+                      decoration: passswordInput(
+                        hintText: 'Confirm Password',
+                        prefixIcon: const Icon(AppIcons.lock, color: AppColors.primaryColor),
                         suffixIcon: IconButton(
                           icon: Icon(
                             context
@@ -186,7 +166,7 @@ class SignupPage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => ChangeNotifierProvider(
                                 create: (_) => SigninPageProvider(),
-                                child: SigninPage(),
+                                child: const SigninPage(),
                               ),
                             ),
                           );

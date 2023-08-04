@@ -21,19 +21,18 @@ class GetStartedPage extends StatelessWidget {
                   width: 200,
                   height: 200,
                 ),
-                const SizedBox(height: 20),
                 const Text(
                   'Ecommerce App',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 const Text(
                   'Discover amazing features and start exploring.',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -49,7 +48,7 @@ class GetStartedPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignupPage(),
+                      builder: (context) => const SignupPage(),
                     ),
                   );
                 },
@@ -57,7 +56,12 @@ class GetStartedPage extends StatelessWidget {
                   backgroundColor: AppColors.primaryColor,
                   fixedSize: const Size(300, 50),
                 ),
-                child: const Text('Get Started'),
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                  ),
               ),
             ),
           ),
