@@ -60,8 +60,7 @@ class SigninPage extends StatelessWidget {
                     controller: TextEditingControllers.emailController,
                     decoration: customInput(
                       hintText: 'Email',
-                      prefixIcon: const Icon(AppIcons.email,
-                          color: AppColors.primaryColor),
+                      prefixIcon: const Icon(AppIcons.email, color: AppColors.primaryColor),
                     ),
                   ),
                 ),

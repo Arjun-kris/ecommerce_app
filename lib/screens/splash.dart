@@ -54,7 +54,7 @@ class GetStartedPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryColor,
-                  fixedSize: const Size(300, 50),
+                  fixedSize: const Size(360, 50),
                 ),
                 child: const Text(
                   'Get Started',
