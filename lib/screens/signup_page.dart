@@ -2,20 +2,16 @@ import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/constants/text_field_styles.dart';
 import 'package:ecommerce_app1/constants/decoration.dart';
 import 'package:ecommerce_app1/constants/padding.dart';
-import 'package:ecommerce_app1/screens/homescreen.dart';
 import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app1/controllers/signup_provider.dart';
 import 'package:ecommerce_app1/constants/images.dart';
+import '../utils/dialog_utils.dart';
+
 
 class SignupPage extends StatelessWidget {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+
 
   SignupPage({super.key});
 
@@ -54,7 +50,7 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: nameController,
+                      controller: TextEditingControllers.nameController,
                       decoration: const InputDecoration(
                         labelText: 'Name',
                         labelStyle: textFieldTextStyle,
@@ -69,7 +65,7 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: emailController,
+                      controller: TextEditingControllers.emailController,
                       decoration: const InputDecoration(
                         labelText: 'Phone',
                         labelStyle: textFieldTextStyle,
@@ -84,7 +80,7 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: phoneController,
+                      controller: TextEditingControllers.phoneController,
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         labelStyle: textFieldTextStyle,
@@ -99,7 +95,7 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: passwordController,
+                      controller: TextEditingControllers.passwordController,
                       obscureText:
                           context.watch<SignupPageProvider>().isPasswordVisible,
                       decoration: InputDecoration(
@@ -131,7 +127,7 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: confirmPasswordController,
+                      controller: TextEditingControllers.confirmPasswordController,
                       obscureText: context
                           .watch<SignupPageProvider>()
                           .isConfirmPasswordVisible,
@@ -163,7 +159,7 @@ class SignupPage extends StatelessWidget {
                   const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
-                      _showSuccessDialog(context);
+                      DialogUtils.showSuccessDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor,
@@ -213,31 +209,5 @@ class SignupPage extends StatelessWidget {
         ),
       );
     });
-  }
-
-  void _showSuccessDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Account created successfully!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }

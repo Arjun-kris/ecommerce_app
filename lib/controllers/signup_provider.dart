@@ -16,6 +16,14 @@ class SignupData with ChangeNotifier {
   }
 }
 
+class TextEditingControllers {
+  static final nameController = TextEditingController();
+  static final emailController = TextEditingController();
+  static final phoneController = TextEditingController();
+  static final passwordController = TextEditingController();
+  static final confirmPasswordController = TextEditingController();
+}
+
 class SignupPageProvider extends ChangeNotifier {
   bool _isPasswordVisible = true;
   bool _isConfirmPasswordVisible = true;
@@ -33,5 +41,6 @@ class SignupPageProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
 
 
