@@ -12,6 +12,8 @@ class Product {
     required this.image,
     required this.price,
   });
+
+  String get name => title;
 }
 
 final List<Product> products = [
