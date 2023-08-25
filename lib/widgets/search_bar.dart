@@ -9,7 +9,9 @@ class SearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextField(
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
           hintText: 'Search products...',
+          hintStyle: const TextStyle(fontSize: 14.0),
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),

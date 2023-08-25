@@ -60,7 +60,8 @@ class SigninPage extends StatelessWidget {
                     controller: TextEditingControllers.emailController,
                     decoration: customInput(
                       hintText: 'Email',
-                      prefixIcon: const Icon(AppIcons.email, color: AppColors.primaryColor),
+                      prefixIcon: const Icon(AppIcons.email,
+                          color: AppColors.primaryColor),
                     ),
                   ),
                 ),
@@ -106,7 +107,7 @@ class SigninPage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const HomeScreen(),
@@ -132,13 +133,16 @@ class SigninPage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignupPage(),
-                        ),
-                      );
-                    },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (_) => SignupPageProvider(),
+                              child: const SignupPage(),
+                            ),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Sign up',
                         style: TextStyle(

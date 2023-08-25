@@ -1,3 +1,4 @@
+import 'package:ecommerce_app1/screens/checkout.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../models/product.dart';
@@ -14,7 +15,8 @@ class ProductScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text('Product Details', style: TextStyle(color: Colors.black)),
+        title: const Text('Product Details',
+            style: TextStyle(color: Colors.black)),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
@@ -23,7 +25,7 @@ class ProductScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 120),
             SizedBox(
-              height: 120,
+              height: 360,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
@@ -32,8 +34,8 @@ class ProductScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
                       product.image,
-                      width: 140,
-                      height: 140,
+                      width: 395,
+                      height: 260,
                     ),
                   );
                 },
@@ -46,7 +48,8 @@ class ProductScreen extends StatelessWidget {
                 children: [
                   Text(
                     product.name,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   const Row(
@@ -79,23 +82,35 @@ class ProductScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () {
+                  // Add to Cart
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  fixedSize: const Size(150, 50),
+                  backgroundColor: Colors.grey,
+                  fixedSize: const Size(100, 50),
                 ),
-                child: const Text('Add to Cart'),
+                icon: const Icon(Icons.shopping_bag_outlined,
+                    color: Colors.white),
+                label: const SizedBox.shrink(),
               ),
               ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CheckoutPage(product: product),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  fixedSize: const Size(150, 50),
+                  backgroundColor: AppColors.primaryColor,
+                  fixedSize: const Size(250, 50),
                 ),
-                child: const Text('Buy Now'),
+                child: const Text(
+                  'Buy Now',
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
             ],
           ),

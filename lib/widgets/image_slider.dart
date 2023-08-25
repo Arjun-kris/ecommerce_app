@@ -1,3 +1,4 @@
+import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -39,8 +40,9 @@ class ImageSlider extends StatelessWidget {
             return AnimatedSmoothIndicator(
               onDotClicked: sliderState.animateToSlide,
               effect: const ExpandingDotsEffect(
-                dotWidth: 15,
-                activeDotColor: Colors.blue,
+                dotHeight: 6,
+                dotWidth: 6,
+                activeDotColor: AppColors.primaryColor,
               ),
               activeIndex: sliderState.activeIndex,
               count: sliderState.localImages.length,
@@ -53,7 +55,7 @@ class ImageSlider extends StatelessWidget {
 
   Widget buildImage(String localImage, int index) => Image.asset(
         localImage,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
         width: double.infinity,
         height: double.infinity,
       );

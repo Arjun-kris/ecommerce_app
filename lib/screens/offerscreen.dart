@@ -1,14 +1,14 @@
+import 'package:ecommerce_app1/screens/cartscreen.dart';
 import 'package:ecommerce_app1/screens/category.dart';
 import 'package:ecommerce_app1/screens/dashboard.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
-import 'package:ecommerce_app1/screens/offerscreen.dart';
 import 'package:ecommerce_app1/screens/profilescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../constants/colors.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen ({super.key});
+class OfferPage extends StatelessWidget {
+  const OfferPage({super.key});
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
@@ -28,27 +28,28 @@ class cBody extends StatelessWidget {
   const cBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Stack(
-          children: <Widget>[
-            Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                centerTitle: true,
-                title: const Text("Cart",
-                    style: TextStyle(color: AppColors.primaryColor)),
-                elevation: 0.0,
-                leading: IconButton(
-                  color: AppColors.primaryColor,
-                  icon: const Icon(Icons.menu),
-                  onPressed: () {
-                    z.toggle!();
-                  },
+    return WillPopScope(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Stack(
+            children: <Widget>[
+              Scaffold(
+                extendBodyBehindAppBar: true,
+                appBar: AppBar(
+                  backgroundColor: Colors.transparent,
+                  centerTitle: true,
+                  title: const Text("Coupons",
+                      style: TextStyle(color: AppColors.primaryColor)),
+                  elevation: 0.0,
+                  leading: IconButton(
+                    color: AppColors.primaryColor,
+                    icon: const Icon(Icons.menu),
+                    onPressed: () {
+                      z.toggle!();
+                    },
+                  ),
                 ),
-              ),
-                            bottomNavigationBar: _buildBottomNavigationBar(context),
+              bottomNavigationBar: _buildBottomNavigationBar(context),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(
@@ -65,13 +66,18 @@ class cBody extends StatelessWidget {
                 child: const Icon(Icons.shopping_bag_sharp),
               ),
               
-            ),
-          ],
-        );
+              ),
+            ],
+          );
+        },
+      ),
+      onWillPop: () async {
+        return false;
       },
     );
   }
-  Widget _buildBottomNavigationBar(BuildContext context) {
+
+ Widget _buildBottomNavigationBar(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 0.01,
@@ -110,7 +116,7 @@ class cBody extends StatelessWidget {
               label: '',
             ),
           ],
-          currentIndex: 2,
+          currentIndex: 3,
           onTap: (index) {
             switch (index) {
               case 0:

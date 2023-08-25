@@ -19,54 +19,56 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 57.0, 0, 0),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(Images.logo),
-                        ),
-                        SizedBox(height: 8.0),
-                        Text(
-                          "Abc",
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
-                        ),
-                      ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 57.0, 0, 0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(Images.logo),
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            "Abc",
+                            style: TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4.0),
-                  Text(
-                    "abc@gmail.com",
-                    style: TextStyle(fontSize: 16.0, color: Colors.white),
-                  ),
-                ],
+                    SizedBox(height: 4.0),
+                    Text(
+                      "abc@gmail.com",
+                      style: TextStyle(fontSize: 16.0, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 170),
-            _buildOption(context, Icons.home, "Home", const HomeScreen()),
-            const SizedBox(height: 16),
-            _buildOption(context, Icons.shopping_cart, "Cart", const CartScreen()),
-            const SizedBox(height: 16),
-            _buildOption(context, Icons.favorite_border, "Wishlist", const Wishlist()),
-            const SizedBox(height: 16),
-            _buildOption(context, Icons.wallet_giftcard_rounded, "Coupons", const Coupons()),
-            const SizedBox(height: 16),
-            _buildOption(context, Icons.history_edu, "Order History", const Orderhistory()),
-            const SizedBox(height: 16),
-            _buildOption(context, Icons.headset_mic, "Help Center", const Helpcenter()),
-            const SizedBox(height: 160),
-            _buildOption(context, Icons.logout, "Logout", ChangeNotifierProvider(create: (_) => SigninPageProvider(),child: const SigninPage(),),),
-          ],
+              const SizedBox(height: 170),
+              _buildOption(context, Icons.home, "Home", const HomeScreen()),
+              const SizedBox(height: 16),
+              _buildOption(context, Icons.shopping_cart, "Cart", const CartScreen()),
+              const SizedBox(height: 16),
+              _buildOption(context, Icons.favorite_border, "Wishlist", const Wishlist()),
+              const SizedBox(height: 16),
+              _buildOption(context, Icons.wallet_giftcard_rounded, "Coupons", const Coupons()),
+              const SizedBox(height: 16),
+              _buildOption(context, Icons.history_edu, "Order History", const Orderhistory()),
+              const SizedBox(height: 16),
+              _buildOption(context, Icons.headset_mic, "Help Center", const Helpcenter()),
+              const SizedBox(height: 160),
+              _buildOption(context, Icons.logout, "Logout", ChangeNotifierProvider(create: (_) => SigninPageProvider(),child: const SigninPage(),),),
+            ],
+          ),
         ),
       ),
     );

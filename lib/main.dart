@@ -1,14 +1,14 @@
+import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:ecommerce_app1/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants/colors.dart';
-import 'controllers/signdata_provider.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (_) => SignupPageProvider(),
+      create: (_) => SigninPageProvider(),
       child: const GetStartedApp(),
     ),
   );

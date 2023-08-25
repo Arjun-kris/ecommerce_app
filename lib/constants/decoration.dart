@@ -12,6 +12,16 @@ final textFieldDecoration = BoxDecoration(
 );
 
 
+InputDecoration normalInput({required String hintText}) {
+  return InputDecoration(
+    hintText: hintText,
+    hintStyle: hint,
+    border: InputBorder.none,
+    contentPadding: textFieldContentPadding,
+  );
+}
+
+
 InputDecoration customInput({required String hintText, required Icon prefixIcon}) {
   return InputDecoration(
     hintText: hintText,

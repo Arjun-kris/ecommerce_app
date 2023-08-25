@@ -1,5 +1,5 @@
+import 'package:ecommerce_app1/screens/signin_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app1/screens/signup_page.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 
@@ -48,7 +48,7 @@ class GetStartedPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignupPage(),
+                      builder: (context) => const SigninPage(),
                     ),
                   );
                 },

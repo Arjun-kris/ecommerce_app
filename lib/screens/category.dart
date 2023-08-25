@@ -1,4 +1,4 @@
-import 'package:ecommerce_app1/screens/category.dart';
+import 'package:ecommerce_app1/screens/cartscreen.dart';
 import 'package:ecommerce_app1/screens/dashboard.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
 import 'package:ecommerce_app1/screens/offerscreen.dart';
@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../constants/colors.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen ({super.key});
+class CategoryScreen extends StatelessWidget {
+  const CategoryScreen ({super.key});
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
@@ -37,7 +37,7 @@ class cBody extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 centerTitle: true,
-                title: const Text("Cart",
+                title: const Text("Category",
                     style: TextStyle(color: AppColors.primaryColor)),
                 elevation: 0.0,
                 leading: IconButton(
@@ -48,7 +48,7 @@ class cBody extends StatelessWidget {
                   },
                 ),
               ),
-                            bottomNavigationBar: _buildBottomNavigationBar(context),
+              bottomNavigationBar: _buildBottomNavigationBar(context),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(
