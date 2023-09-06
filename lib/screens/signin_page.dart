@@ -1,3 +1,4 @@
+import 'package:ecommerce_app1/constants/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
@@ -105,21 +106,15 @@ class SigninPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                Commonbutton(
+                buttonText: 'LOG IN',
+                buttonfunction: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const HomeScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                    fixedSize: const Size(400, 50),
-                  ),
-                  child: const Text('LOG IN', style: TextStyle(fontSize: 21)),
-                ),
+                      ));
+                }),
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

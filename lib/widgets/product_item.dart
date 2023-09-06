@@ -3,11 +3,17 @@ import '../models/product.dart';
 import '../screens/productscreen.dart';
 import '../constants/colors.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   final Product product;
 
   const ProductItem({required this.product, Key? key}) : super(key: key);
 
+  @override
+  _ProductItemState createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -16,15 +22,16 @@ class ProductItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductScreen(product: product),
+            builder: (context) => ProductScreen(product: widget.product),
           ),
         );
       },
       child: Card(
+        color: AppColors.accentColor,
         elevation: 4.0,
         margin: const EdgeInsets.symmetric(
-          horizontal: 23.0,
-          vertical: 6.0,
+          horizontal: 14.0,
+          vertical: 10.0,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -41,18 +48,44 @@ class ProductItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 12,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      iconSize: 25,
+                      icon: isFavorite
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              Icons.favorite_border,
+                              color: AppColors.secondaryColor
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                    ),
+                  ),
+                ),
                 Center(
-                  child: Image.asset(product.image, height: 120, fit: BoxFit.cover,
+                  child: Image.asset(
+                    widget.product.image,
+                    height: 120,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(height: 6),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0), // Adjusted padding
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.title,
+                        widget.product.title,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -60,7 +93,7 @@ class ProductItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '\$${product.price.toStringAsFixed(2)}',
+                        '\$${widget.product.price.toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

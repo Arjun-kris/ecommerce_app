@@ -1,3 +1,4 @@
+import 'package:ecommerce_app1/constants/button.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import 'package:ecommerce_app1/constants/decoration.dart';
 import 'package:ecommerce_app1/screens/signin_page.dart';
@@ -8,10 +9,7 @@ import 'package:ecommerce_app1/controllers/signdata_provider.dart';
 import 'package:ecommerce_app1/constants/images.dart';
 import '../utils/dialog_utils.dart';
 
-
 class SignupPage extends StatelessWidget {
-
-
   const SignupPage({super.key});
 
   @override
@@ -51,8 +49,9 @@ class SignupPage extends StatelessWidget {
                     child: TextField(
                       controller: TextEditingControllers.nameController,
                       decoration: customInput(
-                      hintText: 'Name',
-                      prefixIcon: const Icon(AppIcons.name, color: AppColors.primaryColor),
+                        hintText: 'Name',
+                        prefixIcon: const Icon(AppIcons.name,
+                            color: AppColors.primaryColor),
                       ),
                     ),
                   ),
@@ -62,8 +61,9 @@ class SignupPage extends StatelessWidget {
                     child: TextField(
                       controller: TextEditingControllers.phoneController,
                       decoration: customInput(
-                      hintText: 'Phone',
-                      prefixIcon: const Icon(AppIcons.phone, color: AppColors.primaryColor),
+                        hintText: 'Phone',
+                        prefixIcon: const Icon(AppIcons.phone,
+                            color: AppColors.primaryColor),
                       ),
                     ),
                   ),
@@ -73,8 +73,9 @@ class SignupPage extends StatelessWidget {
                     child: TextField(
                       controller: TextEditingControllers.emailController,
                       decoration: customInput(
-                      hintText: 'Email',
-                      prefixIcon: const Icon(AppIcons.email, color: AppColors.primaryColor),
+                        hintText: 'Email',
+                        prefixIcon: const Icon(AppIcons.email,
+                            color: AppColors.primaryColor),
                       ),
                     ),
                   ),
@@ -111,13 +112,15 @@ class SignupPage extends StatelessWidget {
                   Container(
                     decoration: textFieldDecoration,
                     child: TextField(
-                      controller: TextEditingControllers.confirmPasswordController,
+                      controller:
+                          TextEditingControllers.confirmPasswordController,
                       obscureText: context
                           .watch<SignupPageProvider>()
                           .isConfirmPasswordVisible,
                       decoration: passswordInput(
                         hintText: 'Confirm Password',
-                        prefixIcon: const Icon(AppIcons.lock, color: AppColors.primaryColor),
+                        prefixIcon: const Icon(AppIcons.lock,
+                            color: AppColors.primaryColor),
                         suffixIcon: IconButton(
                           icon: Icon(
                             context
@@ -138,9 +141,7 @@ class SignupPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () {
-                      DialogUtils.showSuccessDialog(context);
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor,
                       fixedSize: const Size(400, 50),
@@ -148,6 +149,11 @@ class SignupPage extends StatelessWidget {
                     child:
                         const Text('SIGN UP', style: TextStyle(fontSize: 21)),
                   ),
+                  Commonbutton(
+                      buttonText: 'Save and Pay',
+                      buttonfunction: () {
+                        DialogUtils.showSuccessDialog(context);
+                      }),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

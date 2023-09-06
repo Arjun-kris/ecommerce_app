@@ -14,6 +14,8 @@ class Product {
   });
 
   String get name => title;
+
+  findByCategory(String categoryName) {}
 }
 
 final List<Product> products = [

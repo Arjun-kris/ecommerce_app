@@ -15,7 +15,7 @@ final textFieldDecoration = BoxDecoration(
 InputDecoration normalInput({required String hintText}) {
   return InputDecoration(
     hintText: hintText,
-    hintStyle: hint,
+    hintStyle: hint2,
     border: InputBorder.none,
     contentPadding: textFieldContentPadding,
   );

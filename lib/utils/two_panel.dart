@@ -65,13 +65,13 @@ class _TwoPanelsContent extends StatelessWidget {
       children: [
         Container(
           width: 100,
-          margin: const EdgeInsets.symmetric(horizontal: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.accentColor.withOpacity(0.1),
             border: Border.all(
-              color: Colors.black,
+              color: AppColors.secondaryColor
             ),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2),
@@ -96,7 +96,7 @@ class _TwoPanelsContent extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Text(title, style: const TextStyle(fontSize: 10)),
+        Text(title, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
       ],
     );
   }
@@ -168,15 +168,18 @@ class _TwoPanelsContent extends StatelessWidget {
                               const SizedBox(height: 16),
                               _buildCategoryCards(),
                               const SizedBox(height: 16),
-                              const ImageSlider(),
                             ],
                           ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: ImageSlider(),
                         ),
                         const SizedBox(height: 16),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.0),
                           child: Text(
-                            'Choose the Product',
+                            'Choose Product',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -184,17 +187,21 @@ class _TwoPanelsContent extends StatelessWidget {
                             textAlign: TextAlign.left,
                           ),
                         ),
-                        GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1,
+                        const SizedBox(height: 16),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.90,
+                            ),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) {
+                              return ProductItem(product: products[index]);
+                            },
                           ),
-                          itemCount: products.length,
-                          itemBuilder: (context, index) {
-                            return ProductItem(product: products[index]);
-                          },
                         ),
                       ],
                     ),
@@ -211,7 +218,7 @@ class _TwoPanelsContent extends StatelessWidget {
   Widget _buildBottomNavigationBar(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
-      notchMargin: 0.01,
+      notchMargin: 0.00,
       clipBehavior: Clip.antiAlias,
       child: Container(
         decoration: const BoxDecoration(

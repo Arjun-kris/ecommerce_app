@@ -6,6 +6,7 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 45,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextField(
         decoration: InputDecoration(

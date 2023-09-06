@@ -1,5 +1,6 @@
 class Images {
   static const String logo = 'assets/images/logo.png';
+  static const String card = 'assets/images/card.png';
 
   static const String product1 = 'assets/images/product1.png';
   static const String product2 = 'assets/images/product2.png';
@@ -9,4 +10,3 @@ class Images {
   static const String shoes = 'assets/images/shoes.png';
   static const String watches = 'assets/images/smartwatch.png';
 }
-

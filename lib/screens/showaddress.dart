@@ -4,6 +4,7 @@ import 'package:ecommerce_app1/constants/colors.dart';
 import '../models/product.dart';
 import '../models/addresses.dart';
 import '../screens/addaddresses.dart';
+import '../screens/editaddresses.dart';
 
 class AddressPage extends StatelessWidget {
   final Product? product;
@@ -15,21 +16,22 @@ class AddressPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: const Text('Shipping Address', style: TextStyle(color: Colors.black)),
+        title: const Text('Shipping Address',
+            style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddAddressPage(),
+                    builder: (context) => const AddAddressPage(),
                   ),
                 );
               },
@@ -46,11 +48,19 @@ class AddressPage extends StatelessWidget {
                   return Slidable(
                     actionPane: const SlidableDrawerActionPane(),
                     actionExtentRatio: 0.25,
+                    actions: [
+                      IconSlideAction(
+                        color: AppColors.primaryColor,
+                        icon: Icons.edit_outlined,
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressPage(address: address)));
+                        },
+                      ),
+                    ],
                     secondaryActions: [
                       IconSlideAction(
-                        caption: 'Delete',
                         color: Colors.red,
-                        icon: Icons.delete,
+                        icon: Icons.delete_outlined,
                         onTap: () {
                           addresses.removeAt(index);
                           Navigator.pop(context);
