@@ -15,14 +15,14 @@ class Coupons extends StatelessWidget {
       slideWidth: MediaQuery.of(context).size.width * 0.65,
       duration: const Duration(milliseconds: 500),
       menuBackgroundColor: AppColors.primaryColor,
-      mainScreen: const cBody(),
+      mainScreen: const CBody(),
       menuScreen: const DashboardScreen(),
     );
   }
 }
 
-class cBody extends StatelessWidget {
-  const cBody({super.key});
+class CBody extends StatelessWidget {
+  const CBody({super.key});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -30,7 +30,6 @@ class cBody extends StatelessWidget {
         return Stack(
           children: <Widget>[
             Scaffold(
-              extendBodyBehindAppBar: true,
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 centerTitle: true,

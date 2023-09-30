@@ -1,8 +1,12 @@
 import 'package:ecommerce_app1/screens/dashboard.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
+import 'package:ecommerce_app1/widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import '../constants/Padding.dart';
+import '../constants/button.dart';
 import '../constants/colors.dart';
+import '../constants/images.dart';
 
 class Orderhistory extends StatelessWidget {
   const Orderhistory({super.key});
@@ -15,40 +19,57 @@ class Orderhistory extends StatelessWidget {
       slideWidth: MediaQuery.of(context).size.width * 0.65,
       duration: const Duration(milliseconds: 500),
       menuBackgroundColor: AppColors.primaryColor,
-      mainScreen: const cBody(),
+      mainScreen: const CBody(),
       menuScreen: const DashboardScreen(),
     );
   }
 }
 
-class cBody extends StatelessWidget {
-  const cBody({super.key});
+class CBody extends StatelessWidget {
+  const CBody({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Stack(
-          children: <Widget>[
-            Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                centerTitle: true,
-                title: const Text("Order History",
-                    style: TextStyle(color: AppColors.primaryColor)),
-                elevation: 0.0,
-                leading: IconButton(
-                  color: AppColors.primaryColor,
-                  icon: const Icon(Icons.menu),
-                  onPressed: () {
-                    z.toggle!();
-                  },
-                ),
+    return Scaffold(
+      appBar: const NormalAppBar(appTitle: 'Order History'),
+      body: Padding(
+        padding: profilecontain,
+        child: Stack(
+          children: [
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    Images.manlaptop,
+                    width: 200,
+                    height: 200,
+                  ),
+                  const Text(
+                    'No history yet',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Click to below button to Create an order',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Smallbutton(
+                    buttonText: 'Start Ordering',
+                    buttonfunction: () {},
+                  )
+                ],
               ),
             ),
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }

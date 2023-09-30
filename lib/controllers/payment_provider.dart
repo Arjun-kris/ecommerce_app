@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class addrPayment {
+class AddrPayment {
   static final cnumController = TextEditingController();
   static final cholderController = TextEditingController();
   static final dateController = TextEditingController();

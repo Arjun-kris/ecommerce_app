@@ -5,22 +5,19 @@ import '../models/product.dart';
 import '../models/addresses.dart';
 import '../screens/addaddresses.dart';
 import '../screens/editaddresses.dart';
+import '../controllers/address_provider.dart';
+import '../widgets/AppBar.dart';
 
 class AddressPage extends StatelessWidget {
   final Product? product;
 
   const AddressPage({Key? key, this.product}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: const Text('Shipping Address',
-            style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: const NormalAppBar(appTitle: 'Address'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,6 +25,13 @@ class AddressPage extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
+                AddrText.nameController.clear();
+                AddrText.phoneController.clear();
+                AddrText.pincodeController.clear();
+                AddrText.stateController.clear();
+                AddrText.addressController.clear();
+                AddrText.townController.clear();
+                AddrText.cityController.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -37,7 +41,10 @@ class AddressPage extends StatelessWidget {
               },
               child: const Text(
                 '+ Add New Address',
-                style: TextStyle(color: AppColors.secondaryColor, fontSize: 18),
+                style: TextStyle(
+                    color: AppColors.secondaryColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600),
               ),
             ),
             Expanded(
@@ -50,10 +57,17 @@ class AddressPage extends StatelessWidget {
                     actionExtentRatio: 0.25,
                     actions: [
                       IconSlideAction(
+                        foregroundColor: AppColors.whiteColor,
                         color: AppColors.primaryColor,
                         icon: Icons.edit_outlined,
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditAddressPage(address: address)));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditAddressPage(address: address),
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -85,14 +99,16 @@ class AddressPage extends StatelessWidget {
                             children: [
                               Text(
                                 address.name,
-                                style: const TextStyle(fontSize: 18),
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                address.street,
+                                '${address.address}, ${address.town}, ${address.city}, ${address.state} - ${address.pincode}',
                                 style: const TextStyle(fontSize: 16),
                               ),
                               Text(
-                                '${address.city}, ${address.state}, ${address.zipCode}',
+                                address.phone,
                                 style: const TextStyle(fontSize: 16),
                               ),
                             ],

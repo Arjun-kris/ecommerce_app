@@ -1,9 +1,10 @@
+import 'package:ecommerce_app1/constants/Padding.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
+import 'package:ecommerce_app1/widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:ecommerce_app1/models/notification_model.dart';
-
 import '../constants/images.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -46,21 +47,13 @@ class NotificationPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.black),
-        title:
-            const Text('Notifications', style: TextStyle(color: Colors.black)),
-        elevation: 0.0,
-      ),
+      appBar: const NormalAppBar(appTitle: 'Notifications'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 80),
               if (recentNotifications.isNotEmpty)
                 _buildNotificationSection('Recent', recentNotifications),
               if (yesterdayNotifications.isNotEmpty)
@@ -100,6 +93,9 @@ class NotificationPage extends StatelessWidget {
             final textColor = notification.read
                 ? AppColors.secondaryColor
                 : AppColors.primaryColor;
+            final elevation = notification.read ? 0.0 : 4.0;
+            final reverseelevation = notification.read ? 4.0 : 0.0;
+            final color = notification.read ? Colors.transparent : Colors.white;
             return Slidable(
               actionPane: const SlidableDrawerActionPane(),
               actionExtentRatio: 0.25,
@@ -122,36 +118,55 @@ class NotificationPage extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: Card(
-                  elevation: 4,
+                  color: color,
+                  elevation: elevation,
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: paddingall10,
+                    child: Row(
                       children: [
-                        Row(
-                          children: [
-                            Image.asset(
+                        Card(
+                          elevation: reverseelevation,
+                          child: Expanded(
+                            flex: 1,
+                            child: Image.asset(
                               Images.logo,
-                              width: 50,
-                              height: 50,
+                              width: 60,
+                              height: 60,
                             ),
-                            Text(
-                              notification.notification,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: textColor,
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              child: Text(
-                                timeAgoSinceDate(notification.dateTime),
-                                style: const TextStyle(fontSize: 10),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                        const SizedBox(height: 8),
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  notification.notification,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                    color: textColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  '\$${notification.price}',
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.secondaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Text(
+                          timeAgoSinceDate(notification.dateTime),
+                          style: const TextStyle(fontSize: 10),
+                        ),
                       ],
                     ),
                   ),

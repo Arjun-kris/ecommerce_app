@@ -1,16 +1,15 @@
-import 'package:ecommerce_app1/screens/cartscreen.dart';
-import 'package:ecommerce_app1/screens/category.dart';
-import 'package:ecommerce_app1/screens/profilescreen.dart';
+// ignore_for_file: library_prefixes
+
+import 'package:ecommerce_app1/constants/Padding.dart';
+import 'package:ecommerce_app1/models/product.dart';
+import 'package:ecommerce_app1/widgets/categorycard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
 import '../constants/colors.dart';
-import '../constants/images.dart';
 import '../controllers/slider_provider.dart';
-import '../models/product.dart';
-import '../screens/homescreen.dart';
 import '../screens/notification.dart';
-import '../screens/offerscreen.dart';
+import '../widgets/bottomnavigation.dart';
 import '../widgets/search_bar.dart' as CustomSearchBar;
 import '../widgets/image_slider.dart';
 import '../widgets/product_item.dart';
@@ -38,69 +37,20 @@ class TwoPanels extends StatelessWidget {
   }
 }
 
-class _TwoPanelsContent extends StatelessWidget {
+class _TwoPanelsContent extends StatefulWidget {
   final AnimationController controller;
   final ZoomDrawerController z;
 
   const _TwoPanelsContent({Key? key, required this.controller, required this.z})
       : super(key: key);
+      
+        get product => Product;
 
-  Widget _buildCategoryCards() {
-    return SizedBox(
-      height: 110,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          _buildCategoryCard('Phones', Images.phones),
-          _buildCategoryCard('Shoes', Images.shoes),
-          _buildCategoryCard('Smartwatches', Images.watches),
-          _buildCategoryCard('Accessories', Images.accessories),
-        ],
-      ),
-    );
-  }
+  @override
+  _TwoPanelsContentState createState() => _TwoPanelsContentState();
+}
 
-  Widget _buildCategoryCard(String title, String data) {
-    return Column(
-      children: [
-        Container(
-          width: 100,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          decoration: BoxDecoration(
-            color: AppColors.accentColor.withOpacity(0.1),
-            border: Border.all(
-              color: AppColors.secondaryColor
-            ),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image(
-                  image: AssetImage(data),
-                  width: 70,
-                  height: 70,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(title, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
-      ],
-    );
-  }
-
+class _TwoPanelsContentState extends State<_TwoPanelsContent> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -108,7 +58,6 @@ class _TwoPanelsContent extends StatelessWidget {
         return Stack(
           children: <Widget>[
             Scaffold(
-              extendBodyBehindAppBar: true,
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 centerTitle: true,
@@ -119,7 +68,7 @@ class _TwoPanelsContent extends StatelessWidget {
                   color: AppColors.primaryColor,
                   icon: const Icon(Icons.menu),
                   onPressed: () {
-                    z.toggle!();
+                    widget.z.toggle!();
                   },
                 ),
                 actions: [
@@ -128,31 +77,18 @@ class _TwoPanelsContent extends StatelessWidget {
                         color: AppColors.primaryColor),
                     onPressed: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NotificationPage()),
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage(),
+                          ));
                     },
                   ),
                 ],
               ),
-              bottomNavigationBar: _buildBottomNavigationBar(context),
+              bottomNavigationBar: const Bottomnavigation(currentindex: 0),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: AppColors.primaryColor,
-                hoverElevation: 10,
-                splashColor: Colors.grey,
-                elevation: 4,
-                onPressed: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CartScreen()),
-                );
-                },
-                child: const Icon(Icons.shopping_bag_sharp),
-              ),
-              
+              floatingActionButton: const Floatingactionbutton(),
               body: Scaffold(
                 body: SafeArea(
                   child: SingleChildScrollView(
@@ -161,18 +97,18 @@ class _TwoPanelsContent extends StatelessWidget {
                       children: [
                         const SizedBox(height: 16),
                         const CustomSearchBar.SearchBar(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        const Padding(
+                          padding: profilecontain,
                           child: Column(
                             children: [
-                              const SizedBox(height: 16),
-                              _buildCategoryCards(),
-                              const SizedBox(height: 16),
+                              SizedBox(height: 16),
+                              CategoryCard(),
+                              SizedBox(height: 16),
                             ],
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          padding: p1,
                           child: ImageSlider(),
                         ),
                         const SizedBox(height: 16),
@@ -189,7 +125,7 @@ class _TwoPanelsContent extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: paddingall8,
                           child: GridView.builder(
                             shrinkWrap: true,
                             gridDelegate:
@@ -199,7 +135,14 @@ class _TwoPanelsContent extends StatelessWidget {
                             ),
                             itemCount: products.length,
                             itemBuilder: (context, index) {
-                              return ProductItem(product: products[index]);
+                              return ProductItem(
+                                product: products[index],
+                                onFavoriteChanged: (bool newValue) {
+                                  setState(() {
+                                    widget.product.isFavorite = newValue;
+                                  });
+                                },
+                              );
                             },
                           ),
                         ),
@@ -214,78 +157,4 @@ class _TwoPanelsContent extends StatelessWidget {
       },
     );
   }
-
-  Widget _buildBottomNavigationBar(BuildContext context) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 0.00,
-      clipBehavior: Clip.antiAlias,
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
-          ),
-        ),
-        child: BottomNavigationBar(
-          unselectedItemColor: AppColors.secondaryColor,
-          selectedItemColor: AppColors.primaryColor,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(null),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer_outlined),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined),
-              label: '',
-            ),
-          ],
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-                break;
-              case 1:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CategoryScreen()),
-                );
-                break;
-              case 3:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OfferPage()),
-                );
-                break;
-              case 4:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilePage()),
-                );
-                break;
-            }
-          },
-        ),
-      ),
-    );
-  }
-
 }

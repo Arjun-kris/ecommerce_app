@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app1/constants/colors.dart';
 import '../models/product.dart';
 import '../models/addresses.dart';
-import 'showaddress.dart'; // Import the ShowAddressPage
+import 'showaddress.dart';
 
 class CheckoutPage extends StatelessWidget {
   final Product product;
@@ -54,11 +54,15 @@ class CheckoutPage extends StatelessWidget {
                             style: const TextStyle(fontSize: 18),
                           ),
                           Text(
-                            firstAddress.street,
+                            firstAddress.phone,
                             style: const TextStyle(fontSize: 16),
                           ),
                           Text(
-                            '${firstAddress.city}, ${firstAddress.state}, ${firstAddress.zipCode}',
+                            '${firstAddress.pincode}, ${firstAddress.state}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            '${firstAddress.address}, ${firstAddress.town}, ${firstAddress.city}',
                             style: const TextStyle(fontSize: 16),
                           ),
                         ],
@@ -70,12 +74,7 @@ class CheckoutPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                /* Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PaymentPage(product: product),
-                  ),
-                ); */
+                
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,

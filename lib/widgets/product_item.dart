@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../screens/productscreen.dart';
@@ -5,15 +7,17 @@ import '../constants/colors.dart';
 
 class ProductItem extends StatefulWidget {
   final Product product;
+  final Function(bool) onFavoriteChanged;
 
-  const ProductItem({required this.product, Key? key}) : super(key: key);
+  const ProductItem(
+      {required this.product, required this.onFavoriteChanged, Key? key})
+      : super(key: key);
 
   @override
   _ProductItemState createState() => _ProductItemState();
 }
 
 class _ProductItemState extends State<ProductItem> {
-  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -54,26 +58,24 @@ class _ProductItemState extends State<ProductItem> {
                     alignment: Alignment.topRight,
                     child: IconButton(
                       iconSize: 25,
-                      icon: isFavorite
+                      icon: widget.product.isFavorite
                           ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
                             )
                           : const Icon(
                               Icons.favorite_border,
-                              color: AppColors.secondaryColor
+                              color: AppColors.secondaryColor,
                             ),
                       onPressed: () {
-                        setState(() {
-                          isFavorite = !isFavorite;
-                        });
+                        widget.onFavoriteChanged(!widget.product.isFavorite);
                       },
                     ),
                   ),
                 ),
                 Center(
                   child: Image.asset(
-                    widget.product.image,
+                    widget.product.images[0],
                     height: 120,
                     fit: BoxFit.cover,
                   ),
@@ -87,7 +89,7 @@ class _ProductItemState extends State<ProductItem> {
                       Text(
                         widget.product.title,
                         style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 12.1,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

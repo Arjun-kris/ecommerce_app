@@ -1,14 +1,17 @@
-import 'package:ecommerce_app1/screens/category.dart';
+import 'package:ecommerce_app1/constants/Padding.dart';
 import 'package:ecommerce_app1/screens/dashboard.dart';
 import 'package:ecommerce_app1/screens/homescreen.dart';
-import 'package:ecommerce_app1/screens/offerscreen.dart';
-import 'package:ecommerce_app1/screens/profilescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../constants/colors.dart';
+import '../models/product.dart';
+import '../widgets/AppBar.dart';
+import '../widgets/StarRating.dart';
+import '../widgets/bottomnavigation.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen ({super.key});
+  const CartScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
@@ -18,131 +21,111 @@ class CartScreen extends StatelessWidget {
       slideWidth: MediaQuery.of(context).size.width * 0.65,
       duration: const Duration(milliseconds: 500),
       menuBackgroundColor: AppColors.primaryColor,
-      mainScreen: const cBody(),
+      mainScreen: CBody(),
       menuScreen: const DashboardScreen(),
     );
   }
 }
 
-class cBody extends StatelessWidget {
-  const cBody({super.key});
+class CBody extends StatelessWidget {
+  CBody({super.key});
+
+  final List<Product> cartProducts =
+      products.where((product) => product.iscart).toList();
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Stack(
-          children: <Widget>[
-            Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                centerTitle: true,
-                title: const Text("Cart",
-                    style: TextStyle(color: AppColors.primaryColor)),
-                elevation: 0.0,
-                leading: IconButton(
-                  color: AppColors.primaryColor,
-                  icon: const Icon(Icons.menu),
-                  onPressed: () {
-                    z.toggle!();
-                  },
-                ),
-              ),
-                            bottomNavigationBar: _buildBottomNavigationBar(context),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: AppColors.primaryColor,
-                hoverElevation: 10,
-                splashColor: Colors.grey,
-                elevation: 4,
-                onPressed: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CartScreen()),
+        return Scaffold(
+          appBar: const NormalAppBar(appTitle: 'Cart'),
+          bottomNavigationBar: const Bottomnavigation(currentindex: 2),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: const Floatingactionbutton(),
+          body: Padding(
+            padding: paddingall16,
+            child: ListView.builder(
+              itemCount: cartProducts.length,
+              itemBuilder: (context, index) {
+                final cartProduct = cartProducts[index];
+                return Slidable(
+                  actionPane: const SlidableDrawerActionPane(),
+                  actionExtentRatio: 0.25,
+                  secondaryActions: [
+                    IconSlideAction(
+                      color: Colors.red,
+                      icon: Icons.delete_outlined,
+                      onTap: () {
+                        cartProducts.removeAt(index);
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                      color: AppColors.whiteColor,
+                      elevation: 4,
+                      child: Padding(
+                        padding: paddingall10,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Image.asset(
+                                cartProduct.images[0],
+                                width: 70,
+                                height: 70,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 4.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      cartProduct.title,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w900,
+                                        color: AppColors.secondaryColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      '\$${cartProduct.price}',
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w900,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    StarRating(rating: cartProduct.rating),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 );
-                },
-                child: const Icon(Icons.shopping_bag_sharp),
-              ),
-              
+              },
             ),
-          ],
+          ),
         );
       },
     );
   }
-  Widget _buildBottomNavigationBar(BuildContext context) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 0.01,
-      clipBehavior: Clip.antiAlias,
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
-          ),
-        ),
-        child: BottomNavigationBar(
-          unselectedItemColor: AppColors.secondaryColor,
-          selectedItemColor: AppColors.primaryColor,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(null),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer_outlined),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined),
-              label: '',
-            ),
-          ],
-          currentIndex: 2,
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-                break;
-              case 1:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CategoryScreen()),
-                );
-                break;
-              case 3:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OfferPage()),
-                );
-                break;
-              case 4:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilePage()),
-                );
-                break;
-            }
-          },
-        ),
-      ),
-    );
-  }
-
 }

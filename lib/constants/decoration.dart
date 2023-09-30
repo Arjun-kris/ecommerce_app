@@ -15,7 +15,7 @@ final textFieldDecoration = BoxDecoration(
 InputDecoration normalInput({required String hintText}) {
   return InputDecoration(
     hintText: hintText,
-    hintStyle: hint2,
+    hintStyle: hint,
     border: InputBorder.none,
     contentPadding: textFieldContentPadding,
   );
@@ -26,6 +26,7 @@ InputDecoration customInput({required String hintText, required Icon prefixIcon}
   return InputDecoration(
     hintText: hintText,
     hintStyle: hint,
+    prefixIconColor: AppColors.primaryColor,
     border: InputBorder.none,
     contentPadding: textFieldContentPadding,
     prefixIcon: prefixIcon,
@@ -42,4 +43,6 @@ InputDecoration passswordInput({required String hintText, required Icon prefixIc
     suffixIcon: suffixIcon,
   );
 }
+
+
 

@@ -140,17 +140,8 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
-                      fixedSize: const Size(400, 50),
-                    ),
-                    child:
-                        const Text('SIGN UP', style: TextStyle(fontSize: 21)),
-                  ),
                   Commonbutton(
-                      buttonText: 'Save and Pay',
+                      buttonText: 'Sign In',
                       buttonfunction: () {
                         DialogUtils.showSuccessDialog(context);
                       }),

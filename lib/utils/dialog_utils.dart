@@ -29,6 +29,7 @@ class DialogUtils {
                 child: const Text('OK'),
               ),
             ),
+            const SizedBox(height: 10)
           ],
         );
       },

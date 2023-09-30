@@ -44,6 +44,9 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   image_picker: ^1.0.4
   intl: ^0.18.1
+  shared_preferences: ^2.2.1
+  photo_view: ^0.14.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -71,8 +74,18 @@ flutter:
   assets:
    - assets/images/logo.png
    - assets/images/card.png
-   - assets/images/product1.png
-   - assets/images/product2.png
+   - assets/images/product1_1.png
+   - assets/images/product1_2.png
+   - assets/images/product1_3.png
+   - assets/images/product2_1.png
+   - assets/images/product2_2.png
+   - assets/images/product2_3.png
+   - assets/images/product3_1.png
+   - assets/images/product3_2.png
+   - assets/images/product3_3.png
+   - assets/images/product4_1.png
+   - assets/images/product4_2.png
+   - assets/images/product4_3.png
    - assets/images/offer1.png
    - assets/images/offer2.png
    - assets/images/offer3.png
@@ -80,6 +93,9 @@ flutter:
    - assets/images/smartphones.png
    - assets/images/shoes.png
    - assets/images/smartwatch.png
+   - assets/images/upi.png
+   - assets/images/manlaptop.png
+   - assets/profile_images/profile.jpg
   # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
